@@ -1,0 +1,39 @@
+<%layout("./layouts/boilerPlate")%> 
+
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <br />
+        <h2> Log In</h2>
+        <form action="/login" method="post" novalidate class="needs-validation">
+            <div>
+                <label for="name" class="form-label">UserName</label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="UserName"
+                    class="form-control"
+                    required
+                />
+                <div class="invalid-feedback">Username Is Required</div>
+            </div>
+            <br />
+            <br />
+            <div>
+                <label for="password" class="form-label">Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    class="form-control"
+                    required
+                />
+                <div class="invalid-feedback">Password Is Required</div>
+            </div>
+            <br />
+           
+            <br />
+            <button type="submit" class="btn btn-primary">Log in</button>
+        </form>
+    </div>
+</div>

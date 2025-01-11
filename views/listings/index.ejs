@@ -1,0 +1,145 @@
+<%layout('/layouts/boilerPlate')%>
+ <style>
+
+        #filters {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: .5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter {
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        .filter:hover {
+            opacity: 1;
+            background: #e9ecef;
+        }
+
+        .filter.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .filter.active:hover {
+            background: #0056b3;
+        }
+        .tax-info{
+            display: none;
+        }
+        .tax-toggle{
+            padding: 0.5rem 0.5rem;
+            border-radius: 10px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0.7;
+            text-align: center;
+            border: 1px solid #ced4da;
+            margin-left: 1rem;
+            min-width: 20px important;
+            box-sizing: border-box;
+            overflow: auto
+        }
+        .tax-toggle:hover{
+            opacity: 1;
+            background: #e9ecef;
+        }
+ </style>
+ <div class="container-fluid  border-bottom">
+    <div class="container d-flex justify-content-between align-items-center py-2">
+      <!-- Toggler Button for Small Screens -->
+      <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStrip" aria-expanded="false" aria-controls="navbarStrip">
+        Menu
+      </button>
+      <!-- Links -->
+      <div class="collapse d-md-flex flex-md-row" id="navbarStrip">
+    <div id="filters">
+        <div class="filter">
+            <i class="fa-solid fa-fire"></i>
+            <p>Trending</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-bed"></i>
+            <p>Rooms</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-mountain-city"></i>
+            <p>Iconic Cities</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-mountain-sun"></i>
+            <p>Mountains</p>
+        </div>
+        <div class="filter">
+            <i class="fa-brands fa-fort-awesome"></i>
+            <p>Castles</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-person-swimming"></i>
+            <p>Amazing Pools</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-campground"></i>
+            <p>Camping</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-tractor"></i>
+            <p>Farms</p>
+        </div>
+        <div class="filter">
+            <i class="fa-regular fa-snowflake"></i>
+            <p>Arctic</p>
+        </div>
+    </div>
+        </div>
+        <div class="tax-toggle ">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Display total after Taxes</label>
+              </div>
+        </div>
+    </div>
+</div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <%for(let listing of allListings) {%>
+            <a href="/listing/<%= listing._id %>" class="text-decoration-none">
+                <div class="card col list-card" >
+                    <img src=<%=listing.image.url%> class="card-img-top" alt="..." style="height: 20rem;">
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                    <p class="card-text">
+                      <b>  <%= listing.title %></b>
+                        <br>
+                        &#8377 <span class="cost"><%= listing.price.toLocaleString("en-IN") %></span>/Night
+                        <i class="tax-info">+18% GST</i>
+                    </p>
+                    </div>
+                </div>
+            </a>
+        <%}%>
+    </div>
+
+
+<script>
+    let taxSwitch = document.getElementById('flexSwitchCheckDefault');
+   taxSwitch.addEventListener('change',()=>{
+       let taxInfo = document.querySelectorAll('.tax-info');
+       taxInfo.forEach((info)=>{
+           if(taxSwitch.checked){
+               info.style.display = 'inline';
+           }else if(!taxSwitch.checked){
+               info.style.display = 'none';
+           }
+       })
+   })
+</script>

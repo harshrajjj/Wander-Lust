@@ -1,0 +1,85 @@
+<%layout('/layouts/boilerPlate')%>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <br />
+    <h2>Create a new Listing</h2>
+    <!-- yha name k andar asy likhe hai jese ki listing[title] iska mtlb hai ki listing k andar title ka key hai yha yha se pura object bhej rha hai jo ki listing h usme title,description,image,price,location,country ye sab hai  -->
+    <!-- here we use no validate to stop the default validation of the browser and we use class="needs-validation" to use our custom validation of bootstrap -->
+    <form action="/listing" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+      <div>
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          name="listing[title]"
+          placeholder="Title"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">Title Looks Good !</div>
+        <div class="invalid-feedback">Title Is Required</div>
+      </div>
+      <br />
+      <div>
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          name="listing[description]"
+          placeholder="Enter Description"
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Please enter a short description</div>
+      <br>
+      <div>
+        <label for="image" class="form-label">Upload Listing Image </label>
+        <input
+          type="file"
+          name="listing[image]"
+          class="form-control"
+          required
+        />
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-4">
+          <label for="price" class="form-label">Price</label>
+          <input
+    
+            name="listing[price]"
+            placeholder="Price"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Price should be valid!</div>
+        </div>
+        <br />
+        <div class="col-md-8">
+          <label for="country" class="form-label">Country</label>
+          <input
+            type="text"
+            name="listing[country]"
+            placeholder="Country"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Country should be valid!</div>
+        </div>
+      </div>
+      <br />
+      <div>
+        <label for="location" class="form-label">Location</label>
+        <input
+          type="text"
+          name="listing[location]"
+          placeholder="Location"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Location should be valid!</div>
+      </div>
+      <br />
+      <button type="submit" class="btn add-btn">Create Listing</button>
+      <br /><br />
+    </form>
+  </div>
+</div>
